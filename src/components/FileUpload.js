@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, {useState } from 'react';
 import axios from 'axios';
 import './FileUpload.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,11 +17,16 @@ const FileUpload = () => {
         event.preventDefault();
         const formData = new FormData();
         formData.append('file', file);
-        axios.post('./uploads', formData)
+        axios.post('/upload', formData)
         .then(
             res => {
                 console.log(res);
             });
+    }
+
+    const saveFile = (event) =>{
+        event.preventDefault();
+        
     }
 
     return(
