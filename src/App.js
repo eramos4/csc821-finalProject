@@ -7,7 +7,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1>Upload An Image</h1>
+      <h1>Upload Image to Analyze</h1>
      <FileUpload></FileUpload>
     </div>
     

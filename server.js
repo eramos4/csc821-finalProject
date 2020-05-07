@@ -23,6 +23,10 @@ app.use(morgan('dev'));
 //   console.log(`App is listening on port ${port}.`)
 // );
 
+
+
+
+
 const executePythonCode = (path) => {
    console.log('executing pyhton algorithim:')
    console.log(path)
@@ -44,8 +48,17 @@ app.post('/upload', async (req, res) => {
           let path = `${__dirname}/public/uploads/${file.name}`
           file.mv(path);
 
-          executePythonCode(path)
+          
 
+        //   const { spawn } = require('child_process');
+
+        //   const bat = spawn(``);
+
+
+          process.stdout.on('data', function(data) { 
+            res.send(data.toString()); 
+        } )
+          
           //send response
           res.send({
               status: true,
