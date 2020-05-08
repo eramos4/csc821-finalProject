@@ -8,6 +8,10 @@ const FileUpload = () => {
     const [file, setFile] = useState('');
     const [filename, setFilename] = useState('Choose File');
     const [uploadPercentage, setUploadPercentage] = useState(0);
+
+    const [image, setImage] = useState(false)
+
+
     
     const fileSelectedHandler = (event) =>{
         
@@ -19,10 +23,15 @@ const FileUpload = () => {
         event.preventDefault();
         const formData = new FormData();
         formData.append('file', file);
-        axios.post('/upload', formData,config)
+        axios.post('/predict', formData,config)
         .then(
             res => {
-                console.log(res);
+
+                console.log(res.data);
+
+
+            
+                setImage(`http://localhost:5000/image/${res.data.results}`)
             });
     }
 
@@ -66,6 +75,9 @@ const FileUpload = () => {
                     Upload
                 </button>
             </div>
+
+            {image ? <img src={image} alt='Image not Rendered'/>: <p>no image</p>}
+            {/* {image ? <a href={image} download="image"></a>: <p>no image</p>} */}
 
         </div>
 
