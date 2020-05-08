@@ -27,12 +27,11 @@ const FileUpload = () => {
         .then(
             res => {
 
-                console.log(res);
+                console.log(res.data);
 
 
-                let temp = Buffer.from(res.data, 'binary').toString('base64')
-                console.log(temp)
-                setImage(temp)
+            
+                setImage(`http://localhost:5000/image/${res.data.results}`)
             });
     }
 
@@ -77,7 +76,7 @@ const FileUpload = () => {
                 </button>
             </div>
 
-            {image ? <img src={`data:image/jpeg;base64,${image}`} alt='Image not Rendered'/>: <p>no image</p>}
+            {image ? <img src={image} alt='Image not Rendered'/>: <p>no image</p>}
             {/* {image ? <a href={image} download="image"></a>: <p>no image</p>} */}
 
         </div>
