@@ -12,9 +12,9 @@ const FileUpload = () => {
     const [image, setImage] = useState(false)
 
 
-    
+
     const fileSelectedHandler = (event) =>{
-        
+
         setFile(event.target.files[0]);
         setFilename(event.target.files[0].name);
     }
@@ -26,12 +26,13 @@ const FileUpload = () => {
         axios.post('/predict', formData,config)
         .then(
             res => {
-
                 console.log(res.data);
+                axios.get(`/image/${res.data.results}`, {responseType: 'blob'})
+                .then(response => {
+                  let imageNode = document.getElementById('image');
+                  setImage(URL.createObjectURL(response.data))
+                })
 
-
-            
-                setImage(`http://localhost:5000/image/${res.data.results}`)
             });
     }
 
@@ -42,8 +43,8 @@ const FileUpload = () => {
                 Math.round((progressEvent.loaded * 100) / progressEvent.total)
               )
             );
-           
-  
+
+
             // Clear percentage
             setTimeout(() => setUploadPercentage(0), 10000);
           }
@@ -53,7 +54,7 @@ const FileUpload = () => {
         <div className="holding">
             <div className="file-upload">
                 <div className="custom-file">
-                    <input 
+                    <input
                     type="file"
                     className="custom-file-input"
                     id="inputGroupFile01"
@@ -64,7 +65,7 @@ const FileUpload = () => {
                     {filename}
                     </label>
 
-                    
+
                     <Progress percentage={uploadPercentage} />
 
                 </div>
