@@ -4,9 +4,9 @@
 }
 
 .file-upload{
-    width: 80vw;
+    width: 20vw;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
 
@@ -20,10 +20,14 @@
     border-radius: 3px;
     margin-top: 20px;
     height: 35px;
-    width: 80vw;
+    width: 20vw;
     
 
 }
 
 
-
+@media only screen and (max-width: 920px){
+    .file-upload{
+        margin-top: 200px;
+    }
+}
